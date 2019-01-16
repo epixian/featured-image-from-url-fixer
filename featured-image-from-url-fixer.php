@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Featured Image From URL Fixer
-Description: Imports featured images hosted at external URLs and removes any associated Featured Image From URL metadata from your posts.
+Description: Imports featured images hosted at external URLs and removes any associated Featured Image From URL metadata from your Wordpress posts.
 Version: 0.1
 Author: EPIXIAN
 Author URI: https://epixian.com/

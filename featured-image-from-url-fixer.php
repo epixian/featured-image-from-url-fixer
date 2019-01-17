@@ -28,8 +28,7 @@ function epx_fifuf_tools_html() {
 		'meta_query' => array(  
 			array(
 				'key' => 'fifu_image_url',                // that have a matching meta key
-				'value' => 'mealsheelsandcocktails.com',  // not matching this website
-//				'value' => $domain_name,                  // not matching this website
+				'value' => $domain_name,                  // not matching this website
 				'compare' => 'NOT LIKE',
 			),
 		),

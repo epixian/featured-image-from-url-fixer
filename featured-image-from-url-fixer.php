@@ -14,7 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
 /*
  * The actual meat and potatoes of the plugin.  Displays a list of FIFU affected posts and a button to fix them.
  */
-function epix_fifuf_tools_html() { 
+function epx_fifuf_tools_html() { 
 ?>
 	<div class="wrap">
 		<h1>Featured Image From URL Fixer</h1>
@@ -136,24 +136,24 @@ function epix_fifuf_tools_html() {
 /*
  * Add submenu item to the Settings menu
  */
-function epix_fifuf_add_menu() {
+function epx_fifuf_add_menu() {
 	add_options_page(
 		'Featured Images From URL Fixer',
 		'FIFU Fixer',
 		'manage_options',
 		'fifuf',
-		'epix_fifuf_tools_html'
+		'epx_fifuf_tools_html'
 	);
 }
-add_action('admin_menu', 'epix_fifuf_add_menu');	
+add_action('admin_menu', 'epx_fifuf_add_menu');	
 
 /*
  * Add a direct link to the Settings page from the list of installed plugins
  */
-function epix_fifuf_add_settings_to_plugins_page( $links ) {
+function epx_fifuf_add_settings_to_plugins_page( $links ) {
     $settings_link = '<a href="options-general.php?page=fifuf">' . __( 'Settings' ) . '</a>';
     array_unshift( $links, $settings_link );
   	return $links;
 }
 $plugin = plugin_basename( __FILE__ );
-add_filter( "plugin_action_links_$plugin", 'epix_fifuf_add_settings_to_plugins_page' );
+add_filter( "plugin_action_links_$plugin", 'epx_fifuf_add_settings_to_plugins_page' );

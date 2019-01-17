@@ -18,7 +18,6 @@ function epx_fifuf_tools_html() {
 ?>
 	<div class="wrap">
 		<h1>Featured Image From URL Fixer</h1>
-		<form method="POST" action="options-general.php?page=fifuf&execute=true">
 <?php 
 	$site_url = parse_url(get_site_url());
 	$domain_name = $site_url['host'];
@@ -39,6 +38,7 @@ function epx_fifuf_tools_html() {
 
 	// process FIFU entries
 	if ($_REQUEST['execute']) {
+		echo '<form method="POST" action="options-general.php?page=fifuf">';
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
 		if ( $the_query->have_posts() ) {
 			echo '<p>The following images were imported:</p>';
@@ -50,7 +50,7 @@ function epx_fifuf_tools_html() {
 				$image_url = get_post_meta( get_the_ID(), 'fifu_image_url', true );
 
 				// extract filename portion, remove unnecessary characters
-				$filename = preg_replace( '/\.[^.]+$/', '', urldecode(urldecode(basename($image_url))));
+				$filename = urldecode(urldecode(basename($image_url)));
 				$filename = preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $filename); 
 
 				// get Wordpress uploads directory and set save location
@@ -93,7 +93,8 @@ function epx_fifuf_tools_html() {
 
 			}
 			echo '</ul>';
-			echo '<button onClick="window.location=\'options-general.php?page=fifuf&execute=false\'">Rescan for External Images</button>';
+			echo '<button type="submit">Rescan for External Images</button>';
+			echo '</form>';
 
 			wp_reset_postdata();
 
@@ -104,6 +105,7 @@ function epx_fifuf_tools_html() {
 
 	// otherwise just display the entries
 	else {
+		echo '<form method="POST" action="options-general.php?page=fifuf&execute=true">';
 		if ( $the_query->have_posts() ) {
 			echo '<p>Posts with external featured images:</p>';
 			echo '<ul>';
@@ -120,6 +122,8 @@ function epx_fifuf_tools_html() {
 			}
 			echo '</ul>';
 			echo '<button type="submit">Import External Featured Images</button>';
+			echo '</form>';
+
 			wp_reset_postdata();
 
 		} else {
